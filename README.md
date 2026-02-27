@@ -35,7 +35,7 @@ The dataset used in this project was obtained from:
 
 Convolutional Neural Networks (CNNs) are a class of deep learning models specifically designed for processing structured grid data like images. They automatically learn spatial hierarchies of features through backpropagation, making them highly effective for image recognition tasks such as car brand classification.
 
-![CNN Architecture](images/cnn_architecture.png)
+![CNN Architecture](images/cnn_arc.png)
 
 ### Key CNN Concepts
 
@@ -266,7 +266,7 @@ def plot_history(history):
 
 Below are the actual training results from the model:
 
-![Training Results](images/training_results.png)
+![Training Results](images/trained_model_stats.png)
 
 **Training Statistics:**
 
