@@ -1,3 +1,7 @@
+# Dataset sources:
+# Car images: https://www.kaggle.com/datasets/jutrera/stanford-car-dataset-by-classes-folder
+# No-car images: https://www.kaggle.com/datasets/prasunroy/natural-images
+
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
