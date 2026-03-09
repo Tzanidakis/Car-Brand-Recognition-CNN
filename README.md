@@ -20,15 +20,21 @@ This project builds a custom Convolutional Neural Network (CNN) using TensorFlow
 - Toyota Innova
 - no_car (negative samples)
 
-### Dataset Sources
+
+### Dataset Sources and Usage
 
 The dataset used in this project was obtained from:
 
 **Car Images:** https://www.kaggle.com/datasets/kshitij192/cars-image-dataset
-  - For more balanced and faster training, 270 images of each class (including no_car) were used for training, and 67 images of each class (including no_car) for testing, creating a manual 80/20 train/test split. Note: The provided cnn.py script only uses the train folder; test/validation splitting must be done manually if desired.
+  - For more balanced and faster training, 270 images of each class (including no_car) were used for training, and 67 images of each class (including no_car) for testing, creating a manual 80/20 train/test split.
 
 **No-Car Images:** https://www.kaggle.com/datasets/puneet6060/intel-image-classification
-  - Used to create the `no_car` class for negative samples
+  - Used to create the `no_car` class for negative samples.
+
+**How the images are used:**
+- The images from the `train` folder are used for training the model.
+- The images from the `test` folder are used for testing and evaluating the model's performance.
+  - This matches the code in `cnn.py`, which loads images from `train/` for training and from `test/` for evaluation.
 
 ---
 
@@ -155,9 +161,14 @@ The script will output the predicted class and confidence percentage.
 ---
 
 
+
 ## Results Visualization
 
-You can use matplotlib to visualize the training history (accuracy and loss) if desired. Example:
+The accuracy of the model during training is visualized below:
+
+![Model Accuracy](images/accuracy.png)
+
+You can also use matplotlib to visualize the training history (accuracy and loss) if desired. Example:
 
 ```python
 plt.plot(history.history['accuracy'], label='train_acc')
@@ -166,7 +177,7 @@ plt.legend()
 plt.show()
 ```
 
----
+----
 
 ## Setup & Usage Instructions
 

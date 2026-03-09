@@ -42,10 +42,20 @@ train_datagen = ImageDataGenerator(
     fill_mode='nearest'
 )
 
+test_datagen = ImageDataGenerator(rescale=1. / 255)
+
 train_generator = train_datagen.flow_from_directory(
     'train',
     target_size=(IMAGE_SIZE, IMAGE_SIZE),
     class_mode='sparse',
+    shuffle=True
+)
+
+test_generator = test_datagen.flow_from_directory(
+    'test',
+    target_size=(IMAGE_SIZE, IMAGE_SIZE),
+    class_mode='sparse',
+    shuffle=False
 )
 
 class_names = list(train_generator.class_indices.keys())
@@ -100,6 +110,20 @@ def main():
         )
         # Save the model
         model.save('car_cnn_model.h5')
+
+        # Evaluate on test data
+        test_loss, test_acc = model.evaluate(test_generator)
+        print(f"Test accuracy: {test_acc:.4f}")
+
+        # Plot training accuracy values
+        plt.figure(figsize=(10, 5))
+        plt.plot(history.history['accuracy'], label='Train Accuracy')
+        plt.title('Model Training Accuracy')
+        plt.ylabel('Accuracy')
+        plt.xlabel('Epoch')
+        plt.legend(loc='lower right')
+        plt.grid(True)
+        plt.show()
 
 def predict_image(image_path):
     from tensorflow.keras.models import load_model
