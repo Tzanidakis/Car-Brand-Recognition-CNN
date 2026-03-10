@@ -1,12 +1,8 @@
 
-# Car-Brand-Recognition-CNN
-## Dataset Usage
-The images used for testing are taken from the `test` folder and are different from those in the `train` folder. This ensures that the model is evaluated on unseen data.
 
-Custom Convolutional Neural Network (CNN) built with TensorFlow/Keras for detecting cars and recognizing their brand/model in images. Includes data augmentation and a simple training and prediction pipeline.
+# Car-Brand-Recognition-CNN
 
 ---
-
 
 ## Project Overview
 
@@ -22,33 +18,30 @@ This project builds a custom Convolutional Neural Network (CNN) using TensorFlow
 - Toyota Innova
 - no_car (negative samples)
 
-
 ### Dataset Sources and Usage
 
 The dataset used in this project was obtained from:
 
-**Car Images:** https://www.kaggle.com/datasets/kshitij192/cars-image-dataset
+- **Car Images:** https://www.kaggle.com/datasets/kshitij192/cars-image-dataset
   - For more balanced and faster training, 270 images of each class (including no_car) were used for training, and 67 images of each class (including no_car) for testing, creating a manual 80/20 train/test split.
-
-**No-Car Images:** https://www.kaggle.com/datasets/puneet6060/intel-image-classification
+- **No-Car Images:** https://www.kaggle.com/datasets/puneet6060/intel-image-classification
   - Used to create the `no_car` class for negative samples.
 
 **How the images are used:**
 - The images from the `train` folder are used for training the model.
-- The images from the `test` folder are used for testing and evaluating the model's performance.
-  
+- The images from the `test` folder are used for testing and evaluating the model's performance. The test images are different from the train images to ensure proper evaluation.
 
 ---
-
 
 ## About Convolutional Neural Networks (CNNs)
 
 Convolutional Neural Networks (CNNs) are deep learning models designed for image recognition. They use convolutional layers to extract features, pooling layers to reduce dimensionality, and dense layers for classification. This project uses a custom CNN architecture (not transfer learning) for car brand recognition.
 
+![CNN Architecture](images/cnn_arc.png)
+
 ---
 
-
-## Project Implementation
+## Code Explanation
 
 This project uses a custom Sequential CNN model built from scratch. No transfer learning or pre-trained models are used.
 
@@ -58,31 +51,16 @@ The training pipeline uses `ImageDataGenerator` with the following augmentations
 
 ```python
 train_datagen = ImageDataGenerator(
-    rescale=1. / 255,
-    rotation_range=15,
-    width_shift_range=0.1,
-    height_shift_range=0.1,
-    shear_range=0.1,
-    zoom_range=0.1,
-    horizontal_flip=True,
-    fill_mode='nearest'
+  rescale=1. / 255,
+  rotation_range=15,
+  width_shift_range=0.1,
+  height_shift_range=0.1,
+  shear_range=0.1,
+  zoom_range=0.1,
+  horizontal_flip=True,
+  fill_mode='nearest'
 )
 ```
-
-### Model Architecture
-
-The model consists of several Conv2D, BatchNormalization, MaxPooling2D, Dropout, Flatten, and Dense layers. The final layer uses softmax activation for multi-class classification.
-
-**Loss:** `sparse_categorical_crossentropy` (integer labels)
-
-**Optimizer:** Adam (default learning rate 0.001)
-
-**Epochs:** 50 (default)
-
----
-
-
-## Code Explanation with Snippets
 
 ### Model Architecture (cnn.py)
 
@@ -124,8 +102,8 @@ The model is trained in a single phase using the training images in the `train/`
 
 ```python
 history = model.fit(
-    train_generator,
-    epochs=EPOCHS
+  train_generator,
+  epochs=EPOCHS
 )
 model.save('car_cnn_model.h5')
 ```
@@ -134,7 +112,7 @@ model.save('car_cnn_model.h5')
 
 To predict the class of a new image:
 
-```python
+```bash
 python cnn.py --predict path_to_image.jpg
 ```
 
@@ -142,47 +120,7 @@ The script will print the predicted class and confidence. If confidence is low, 
 
 ---
 
-
-## Training
-
-Training is performed on the images in the `train/` directory, organized by class folders. The model uses data augmentation and trains for 50 epochs by default.
-
----
-
-
-## Prediction
-
-After training, you can use the script to predict the class of a new image:
-
-```bash
-python cnn.py --predict path_to_image.jpg
-```
-
-The script will output the predicted class and confidence percentage.
-
----
-
-
-
-## Results Visualization
-
-The accuracy of the model during training is visualized below:
-
-![Model Accuracy](images/accuracy.png)
-
-You can also use matplotlib to visualize the training history (accuracy and loss) if desired. Example:
-
-```python
-plt.plot(history.history['accuracy'], label='train_acc')
-plt.plot(history.history['loss'], label='train_loss')
-plt.legend()
-plt.show()
-```
-
-----
-
-## Setup & Usage Instructions
-
+## How to Run
 
 ### Prerequisites
 
@@ -207,21 +145,32 @@ Car-Brand-Recognition-CNN/
 │   ├── Tata Safari/
 │   ├── Toyota Innova/
 │   └── no_car/
+├── test/                # Testing images (organized by class)
+│   ├── Audi/
+│   ├── Hyundai Creta/
+│   ├── Mahindra Scorpio/
+│   ├── Rolls Royce/
+│   ├── Swift/
+│   ├── Tata Safari/
+│   ├── Toyota Innova/
+│   └── no_car/
+├── images/
+│   └── cnn_arc.png       # CNN architecture diagram
 ```
 
-### How to Run
+### Steps
 
-1. **Prepare your dataset** — Place training images in `train/`, organized by class folders
+1. **Prepare your dataset** — Place training images in `train/`, organized by class folders. Place testing images in class folders in `test/`.
 
 2. **Train the model:**
-    ```bash
-    python cnn.py
-    ```
+  ```bash
+  python cnn.py
+  ```
 
 3. **Make predictions:**
-    ```bash
-    python cnn.py --predict path_to_image.jpg
-    ```
+  ```bash
+  python cnn.py --predict path_to_image.jpg
+  ```
 
 ### Configuration
 
@@ -234,10 +183,26 @@ EPOCHS = 50                # Number of training epochs
 
 ---
 
+## Results Visualization
+
+The accuracy of the model during training is visualized below:
+
+![Model Accuracy](images/accuracy.png)
+
+You can also use matplotlib to visualize the training history (accuracy and loss) if desired. Example:
+
+```python
+plt.plot(history.history['accuracy'], label='train_acc')
+plt.plot(history.history['loss'], label='train_loss')
+plt.legend()
+plt.show()
+```
+
+---
+
 ## License and Credits
 
 - **TensorFlow/Keras** — Deep learning framework used for model development
-
 
 This project was developed as a university assignment to demonstrate CNN-based image classification using a custom deep learning model.
 
