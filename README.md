@@ -176,6 +176,7 @@ Car-Brand-Recognition-CNN/
   ```
 
 3. **Make predictions:**
+  For validation and predictions, you can also use images from the internet to evaluate how well the model generalizes to new, unseen data.
   ```bash
   python cnn.py --predict path_to_image.jpg
   ```
