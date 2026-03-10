@@ -39,6 +39,16 @@ Convolutional Neural Networks (CNNs) are deep learning models designed for image
 
 ![CNN Architecture](images/cnn_arc.png)
 
+### Key CNN Terms
+
+- **Convolutional Layer (Conv2D):** Extracts features from the input image using learnable filters.
+- **Batch Normalization:** Normalizes the output of a previous activation layer, improving training speed and stability.
+- **MaxPooling2D:** Reduces the spatial dimensions (height and width) of the feature maps, keeping the most important information.
+- **Dropout:** Randomly sets a fraction of input units to 0 during training to prevent overfitting.
+- **Flatten:** Converts the 2D feature maps into a 1D feature vector for the dense layers.
+- **Dense Layer:** Fully connected layer that combines features for classification.
+- **Softmax Activation:** Converts the output to a probability distribution over classes.
+
 ---
 
 ## Code Explanation
