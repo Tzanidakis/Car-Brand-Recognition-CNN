@@ -1,5 +1,7 @@
 
 # Car-Brand-Recognition-CNN
+## Dataset Usage
+The images used for testing are taken from the `test` folder and are different from those in the `train` folder. This ensures that the model is evaluated on unseen data.
 
 Custom Convolutional Neural Network (CNN) built with TensorFlow/Keras for detecting cars and recognizing their brand/model in images. Includes data augmentation and a simple training and prediction pipeline.
 
@@ -34,7 +36,7 @@ The dataset used in this project was obtained from:
 **How the images are used:**
 - The images from the `train` folder are used for training the model.
 - The images from the `test` folder are used for testing and evaluating the model's performance.
-  - This matches the code in `cnn.py`, which loads images from `train/` for training and from `test/` for evaluation.
+  
 
 ---
 
@@ -118,7 +120,7 @@ model.add(Dense(len(class_names), activation='softmax'))
 
 ### Training Process
 
-The model is trained in a single phase using the training images in the `train/` folder. No separate validation or test set is used by default.
+The model is trained in a single phase using the training images in the `train/` folder.
 
 ```python
 history = model.fit(
@@ -143,7 +145,7 @@ The script will print the predicted class and confidence. If confidence is low, 
 
 ## Training
 
-Training is performed on the images in the `train/` directory, organized by class folders. The model uses data augmentation and trains for 50 epochs by default. No explicit validation or test set is used in the script, but you can split your data manually if needed.
+Training is performed on the images in the `train/` directory, organized by class folders. The model uses data augmentation and trains for 50 epochs by default.
 
 ---
 
