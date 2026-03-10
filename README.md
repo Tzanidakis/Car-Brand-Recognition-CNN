@@ -164,8 +164,6 @@ Car-Brand-Recognition-CNN/
 │   ├── Tata Safari/
 │   ├── Toyota Innova/
 │   └── no_car/
-├── images/
-│   └── cnn_arc.png       # CNN architecture diagram
 ```
 
 ### Steps
